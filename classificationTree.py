@@ -61,6 +61,10 @@ decisionTree = tree.DecisionTreeClassifier().fit(X, Y)
 #       bijvoordeeld Y_predict
 Y_predict = decisionTree.predict(X)
 
+m, b = np.polyfit(x, Y_predict, 1)
+X_plot = np.linspace([min(x), max(x)], 1)
+plt.plot(X_plot, m*X_plot + b, '-')
+
 # Done: vergelijk Y_predict met de echte Y om te zien hoe goed je getraind hebt
 treeAccuracyScore = accuracy_score(Y, Y_predict)
 print("Classificatie accuratie training(Tree): " + str(treeAccuracyScore))
@@ -83,6 +87,11 @@ y_test = X_test[...,1]
 # Z = np.zeros(100) # dit is een gok dat alles 0 is... kan je zelf voorspellen hoeveel procent er goed is?
 Z = decisionTree.predict(X_test)
 g = plt.figure(2)
+
+m, b = np.polyfit(x_test, Z, 1)
+X_plot = np.linspace([min(x)], 1)
+plt.plot(X_plot, m*X_plot + b, '-')
+
 plt.scatter(x_test, y_test, c = Z, s = 10)
 g.show()
 

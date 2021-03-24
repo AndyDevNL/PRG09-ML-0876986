@@ -28,7 +28,7 @@ x = X[..., 0]
 y = X[..., 1]
 
 # Done: print deze punten uit en omcirkel de mogelijke clusters
-clusters = 3
+clusters = 2
 kmeans = KMeans(n_clusters=clusters)
 kmeans.fit(X)
 centroids = kmeans.cluster_centers_

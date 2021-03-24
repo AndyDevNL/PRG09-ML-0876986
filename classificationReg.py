@@ -38,6 +38,16 @@ regression = LogisticRegression().fit(X, Y)
 #       echte Y-waarden, maar enkel de X en je getrainde classifier) en noem deze
 #       bijvoordeeld Y_predict
 Y_predict = regression.predict(X)
+
+# axes = plt.gca()
+# m, b = np.polyfit(x, Y_predict, 1)
+# X_plot = np.linspace(axes.get_xlim()[0],axes.get_xlim()[1],100)
+# plt.plot(X_plot, m*X_plot + b, '-')
+
+m, b = np.polyfit(x, Y_predict, 1)
+X_plot = np.linspace([min(x)], 1)
+plt.plot(X_plot, m*X_plot + b, '-')
+
 regAccuracyScore = accuracy_score(Y, Y_predict)
 print("Classificatie accuratie training(Reg): " + str(regAccuracyScore))
 
@@ -59,6 +69,10 @@ x_test = X_test[...,0]
 y_test = X_test[...,1]
 # Z = np.zeros(100) # dit is een gok dat alles 0 is... kan je zelf voorspellen hoeveel procent er goed is?
 Z = regression.predict(X_test)
+
+m, b = np.polyfit(x_test, Z, 1)
+X_plot = np.linspace([min(x_test)], 1)
+plt.plot(X_plot, m*X_plot + b, '-')
 
 plt.scatter(x_test, y_test, c = Z, s = 10)
 plt.show()
